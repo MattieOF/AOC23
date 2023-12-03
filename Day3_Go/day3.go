@@ -164,7 +164,6 @@ func day2(input *os.File) {
 									current.adjacencies = append(current.adjacencies, val.relevantElement)
 								}
 							}
-							engineMap[dy][dx] = val
 						}
 					}
 				}
