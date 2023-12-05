@@ -1,7 +1,12 @@
 import time
 
+calls_to_get_mapped = 0
+
 
 def get_mapped_pos(the_map, seed):
+    global calls_to_get_mapped
+    calls_to_get_mapped += 1
+
     for current_range in the_map:
         if current_range[1] < seed:
             continue
@@ -169,13 +174,16 @@ def part2():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    calls_to_get_mapped = 0
     start1 = time.perf_counter()
     part1()
     end1 = time.perf_counter()
+    calls_to_get_mapped_p1 = calls_to_get_mapped
 
+    calls_to_get_mapped = 0
     start2 = time.perf_counter()
     part2()
     end2 = time.perf_counter()
 
-    print(f"Took {end1 - start1}s for part 1")
-    print(f"Took {end2 - start2}s for part 2")
+    print(f"Took {end1 - start1}s for part 1, with {calls_to_get_mapped_p1} calls to get_mapped_pos")
+    print(f"Took {end2 - start2}s for part 2, with {calls_to_get_mapped} calls to get_mapped_pos")
